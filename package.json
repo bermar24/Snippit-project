@@ -1,0 +1,30 @@
+{
+  "name": "modern-blog-platform",
+  "version": "1.0.0",
+  "description": "A modern, responsive blogging platform with social features",
+  "scripts": {
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start"
+  },
+  "keywords": [
+    "blog",
+    "platform",
+    "react",
+    "node",
+    "mongodb"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "recharts": "^3.0.0"
+  }
+}
