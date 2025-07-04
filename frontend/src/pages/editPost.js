@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -37,7 +37,9 @@ const EditPost = () => {
   const { data: post, isLoading } = useQuery({
     queryKey: ['post-edit', id],
     queryFn: async () => {
-      const response = await axios.get(`/posts/${id}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/posts/${id}`
+      );
       return response.data.data;
     },
     onSuccess: (data) => {
@@ -58,15 +60,22 @@ const EditPost = () => {
   const updatePostMutation = useMutation({
     mutationFn: async (data) => {
       // First update the post
-      const response = await axios.put(`/posts/${id}`, data);
-      
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/posts/${id}`,
+        data
+      );
+
       // Then upload new image if changed
       if (imageFile && imageChanged) {
         const formData = new FormData();
         formData.append('image', imageFile);
-        await axios.post(`/posts/${id}/image`, formData, {
-          headers: { 'Content-Type': 'multipart/form-data' }
-        });
+        await axios.post(
+          `${process.env.REACT_APP_API_URL}/posts/${id}/image`,
+          formData,
+          {
+            headers: { 'Content-Type': 'multipart/form-data' }
+          }
+        );
       }
       
       return response.data;
