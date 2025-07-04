@@ -1,6 +1,6 @@
-# Modern Blog Platform
+# Snippit
 
-A feature-rich, modern blogging platform built with React.js and Node.js, offering a comprehensive set of features for content creation, social interaction, and user engagement.
+A modern blogging platform built with React.js and Node.js, offering a comprehensive set of features for content creation, social interaction, and user engagement.
 
 ## 🚀 Features
 
@@ -96,51 +96,13 @@ A feature-rich, modern blogging platform built with React.js and Node.js, offeri
 3. **Set up environment variables**
 
    Backend (.env in /backend):
-   ```env
-   PORT=5000
-   NODE_ENV=development
-   MONGODB_URI=mongodb://localhost:27017/modern-blog-platform
-   JWT_SECRET=your_super_secret_jwt_key_here
-   JWT_EXPIRE=30d
-   GOOGLE_CLIENT_ID=your_google_client_id
-   GOOGLE_CLIENT_SECRET=your_google_client_secret
-   CLOUDINARY_CLOUD_NAME=your_cloud_name
-   CLOUDINARY_API_KEY=your_api_key
-   CLOUDINARY_API_SECRET=your_api_secret
-   CLIENT_URL=http://localhost:3000
-   ```
-
    Frontend (.env in /frontend):
-   ```env
-   REACT_APP_API_URL=http://localhost:5000/api
-   REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id
-   ```
+
 
 4. **Run the application**
    ```bash
    npm run dev
    ```
-
-   This will start both the backend (port 5000) and frontend (port 3000) servers.
-
-## 🚀 Deployment
-
-### Frontend (Vercel)
-1. Push your code to GitHub
-2. Connect your GitHub repo to Vercel
-3. Set environment variables in Vercel dashboard
-4. Deploy
-
-### Backend (Render)
-1. Create a new Web Service on Render
-2. Connect your GitHub repository
-3. Set environment variables
-4. Deploy
-
-### Database (MongoDB Atlas)
-1. Create a free cluster on MongoDB Atlas
-2. Get your connection string
-3. Update MONGODB_URI in your backend environment
 
 ## 📁 Project Structure
 
@@ -216,15 +178,6 @@ modern-blog-platform/
 - `GET /api/interactions/tags/popular` - Get popular tags
 - `GET /api/interactions/analytics/post/:id` - Get post analytics
 
-## 🧪 Testing
-
-```bash
-# Run backend tests
-cd backend && npm test
-
-# Run frontend tests
-cd frontend && npm test
-```
 
 ## 🤝 Contributing
 
@@ -240,13 +193,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👥 Team
 
-- Your Name - Full Stack Developer
-- Team Member 2 - Frontend Developer
-- Team Member 3 - Backend Developer
-- Team Member 4 - UI/UX Designer
-
-## 🙏 Acknowledgments
-
-- React.js community
-- Tailwind CSS and DaisyUI teams
-- All open-source contributors
+- Roic Zone  - Frontend Developer
+- Joaquin Berriel - Backend Developer
+- Emin Sengül  4 - UI/UX Designer
