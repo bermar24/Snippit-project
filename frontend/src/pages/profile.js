@@ -90,7 +90,9 @@ const Profile = () => {
   const { data: profile, isLoading: profileLoading } = useQuery({
     queryKey: ['profile', userId],
     queryFn: async () => {
-      const response = await axios.get(`/users/${userId}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/users/${userId}`
+      );
       return response.data.data;
     }
   });
@@ -99,7 +101,9 @@ const Profile = () => {
   const { data: postsData, isLoading: postsLoading } = useQuery({
     queryKey: ['user-posts', userId, page],
     queryFn: async () => {
-      const response = await axios.get(`/posts/user/${userId}?page=${page}&limit=9`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/posts/user/${userId}?page=${page}&limit=9`
+      );
       return response.data;
     },
     enabled: activeTab === 'posts'
@@ -109,7 +113,9 @@ const Profile = () => {
   const { data: followersData } = useQuery({
     queryKey: ['user-followers', userId],
     queryFn: async () => {
-      const response = await axios.get(`/users/${userId}/followers`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/users/${userId}/followers`
+      );
       return response.data.data;
     },
     enabled: activeTab === 'followers'
@@ -119,7 +125,9 @@ const Profile = () => {
   const { data: followingData } = useQuery({
     queryKey: ['user-following', userId],
     queryFn: async () => {
-      const response = await axios.get(`/users/${userId}/following`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/users/${userId}/following`
+      );
       return response.data.data;
     },
     enabled: activeTab === 'following'
@@ -128,7 +136,7 @@ const Profile = () => {
   // Follow/Unfollow mutation
   const followMutation = useMutation({
     mutationFn: async () => {
-      const response = await axios.put(`/users/follow/${userId}`);
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/users/follow/${userId}`);
       return response.data;
     },
     onSuccess: (data) => {

@@ -23,7 +23,7 @@ const Comment = ({ comment, postId, onReply }) => {
   // Like comment mutation
   const likeMutation = useMutation({
     mutationFn: async () => {
-      const response = await axios.put(`/comments/${comment._id}/like`);
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/comments/${comment._id}/like`);
       return response.data;
     },
     onSuccess: () => {
@@ -34,7 +34,7 @@ const Comment = ({ comment, postId, onReply }) => {
   // Update comment mutation
   const updateMutation = useMutation({
     mutationFn: async (content) => {
-      const response = await axios.put(`/comments/${comment._id}`, { content });
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/comments/${comment._id}`, { content });
       return response.data;
     },
     onSuccess: () => {
@@ -47,7 +47,7 @@ const Comment = ({ comment, postId, onReply }) => {
   // Delete comment mutation
   const deleteMutation = useMutation({
     mutationFn: async () => {
-      await axios.delete(`/comments/${comment._id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/comments/${comment._id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(['comments', postId]);
@@ -230,9 +230,8 @@ const CommentSection = ({ postId }) => {
 
   // Fetch comments
   const { data: comments, isLoading } = useQuery({
-    queryKey: ['comments', postId],
     queryFn: async () => {
-      const response = await axios.get(`/comments/post/${postId}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/comments/post/${postId}`);
       return response.data.data;
     }
   });
@@ -240,7 +239,7 @@ const CommentSection = ({ postId }) => {
   // Create comment mutation
   const createCommentMutation = useMutation({
     mutationFn: async (data) => {
-      const response = await axios.post('/comments', data);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/comments`, data);
       return response.data;
     },
     onSuccess: () => {

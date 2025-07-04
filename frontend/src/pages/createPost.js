@@ -34,16 +34,23 @@ const CreatePost = () => {
   const createPostMutation = useMutation({
     mutationFn: async (data) => {
       // First create the post
-      const response = await axios.post('/posts', data);
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/posts`,
+        data
+      );
       const postId = response.data.data._id;
       
       // Then upload image if exists
       if (imageFile) {
         const formData = new FormData();
         formData.append('image', imageFile);
-        await axios.post(`/posts/${postId}/image`, formData, {
-          headers: { 'Content-Type': 'multipart/form-data' }
-        });
+        await axios.post(
+          `${process.env.REACT_APP_API_URL}/posts/${postId}/image`,
+          formData,
+          {
+            headers: { 'Content-Type': 'multipart/form-data' }
+          }
+        );
       }
       
       return response.data;

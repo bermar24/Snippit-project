@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { format } from 'date-fns';
-import { FiSearch, FiFilter, FiX, FiClock, FiEye, FiHeart, FiMessageCircle } from 'react-icons/fi';
+import { FiSearch, FiFilter, FiClock, FiEye, FiHeart, FiMessageCircle } from 'react-icons/fi';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const SearchResults = () => {
@@ -44,7 +44,7 @@ const SearchResults = () => {
       if (filters.tags) params.append('tags', filters.tags);
       if (filters.author) params.append('author', filters.author);
       
-      const response = await axios.get(`/posts?${params}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/posts?${params}`);
       return response.data;
     },
     enabled: !!query
@@ -54,7 +54,7 @@ const SearchResults = () => {
   const { data: popularTags } = useQuery({
     queryKey: ['popular-tags'],
     queryFn: async () => {
-      const response = await axios.get('/interactions/tags/popular?limit=10');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/interactions/tags/popular?limit=10`);
       return response.data.data;
     }
   });

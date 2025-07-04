@@ -38,7 +38,9 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const response = await axios.get('/auth/me');
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/auth/me`
+        );
         setUser(response.data.data);
       } catch (error) {
         localStorage.removeItem('token');
@@ -49,7 +51,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/auth/login', { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
       const { token, user } = response.data;
       
       localStorage.setItem('token', token);
@@ -68,7 +70,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     try {
-      const response = await axios.post('/auth/register', { name, email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, { name, email, password });
       const { token, user } = response.data;
       
       localStorage.setItem('token', token);
@@ -94,7 +96,7 @@ export const AuthProvider = ({ children }) => {
 
   const updateUser = async (updates) => {
     try {
-      const response = await axios.put('/auth/updatedetails', updates);
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/auth/updatedetails`, updates);
       setUser(response.data.data);
       toast.success(t('success.profileUpdated'));
       return { success: true };
@@ -107,7 +109,7 @@ export const AuthProvider = ({ children }) => {
 
   const updatePassword = async (currentPassword, newPassword) => {
     try {
-      await axios.put('/auth/updatepassword', { currentPassword, newPassword });
+      await axios.put(`${process.env.REACT_APP_API_URL}/auth/updatepassword`, { currentPassword, newPassword });
       toast.success(t('success.passwordChanged'));
       return { success: true };
     } catch (error) {
@@ -119,7 +121,7 @@ export const AuthProvider = ({ children }) => {
 
   const forgotPassword = async (email) => {
     try {
-      await axios.post('/auth/forgotpassword', { email });
+      await axios.post(`${process.env.REACT_APP_API_URL}/auth/forgotpassword`, { email });
       toast.success(t('auth.resetSuccess'));
       return { success: true };
     } catch (error) {
@@ -131,7 +133,7 @@ export const AuthProvider = ({ children }) => {
 
   const resetPassword = async (token, password) => {
     try {
-      const response = await axios.put(`/auth/resetpassword/${token}`, { password });
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/auth/resetpassword/${token}`, { password });
       const { token: authToken, user } = response.data;
       
       localStorage.setItem('token', authToken);
