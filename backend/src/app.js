@@ -24,8 +24,9 @@ const app = express();
 app.use(helmet());
 
 // CORS configuration
+const isProd = process.env.NODE_ENV === 'production';
 const corsOptions = {
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: isProd ? true : (process.env.CLIENT_URL || 'http://localhost:3000'),
   methods: ['GET','HEAD','PUT','PATCH','POST','DELETE','OPTIONS'],
   credentials: true,
   optionsSuccessStatus: 204
@@ -73,4 +74,3 @@ app.use((req, res) => {
 });
 
 module.exports = app;
-
