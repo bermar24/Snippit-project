@@ -79,7 +79,7 @@ exports.getUserStats = async (req, res, next) => {
     const totalLikes = posts.reduce((sum, post) => sum + post.likes.length, 0);
     
     // Count comments across all posts
-    const Comment = require('../models/Comment');
+    const Comment = require('../models/comment');
     const totalComments = await Comment.countDocuments({ post: { $in: postIds } });
 
     res.status(200).json({

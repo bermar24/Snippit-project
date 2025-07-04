@@ -8,13 +8,9 @@ require('dotenv').config();
 
 const app = require('./src/app');
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('✅ MongoDB connected successfully'))
-.catch((err) => console.error('❌ MongoDB connection error:', err));
+// DB connection with helper
+const connectDB = require('./src/config/database');
+connectDB();
 
 // Start server
 const PORT = process.env.PORT || 5000;
