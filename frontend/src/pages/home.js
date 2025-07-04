@@ -103,10 +103,8 @@ const Home = () => {
       });
       
       if (category) params.append('category', category);
-
-      const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/posts?${params}`
-      );
+      
+      const response = await axios.get(`/posts?${params}`);
       return response.data;
     }
   });

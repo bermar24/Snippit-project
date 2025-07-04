@@ -28,11 +28,9 @@ const EditProfile = () => {
     mutationFn: async (file) => {
       const formData = new FormData();
       formData.append('avatar', file);
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/users/avatar`,
-        formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      );
+      const response = await axios.post('/users/avatar', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
       return response.data;
     },
     onSuccess: (data) => {

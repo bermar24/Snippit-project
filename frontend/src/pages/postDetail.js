@@ -43,9 +43,7 @@ const PostDetail = () => {
   const { data: post, isLoading, error } = useQuery({
     queryKey: ['post', slug],
     queryFn: async () => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/posts/${slug}`
-      );
+      const response = await axios.get(`/posts/${slug}`);
       return response.data.data;
     }
   });
@@ -53,9 +51,7 @@ const PostDetail = () => {
   // Like mutation
   const likeMutation = useMutation({
     mutationFn: async () => {
-      const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/posts/${post._id}/like`
-      );
+      const response = await axios.put(`/posts/${post._id}/like`);
       return response.data;
     },
     onSuccess: (data) => {
@@ -72,9 +68,7 @@ const PostDetail = () => {
   // Bookmark mutation
   const bookmarkMutation = useMutation({
     mutationFn: async () => {
-      const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/users/bookmark/${post._id}`
-      );
+      const response = await axios.put(`/users/bookmark/${post._id}`);
       return response.data;
     },
     onSuccess: (data) => {
@@ -85,9 +79,7 @@ const PostDetail = () => {
   // Delete mutation
   const deleteMutation = useMutation({
     mutationFn: async () => {
-      await axios.delete(
-        `${process.env.REACT_APP_API_URL}/posts/${post._id}`
-      );
+      await axios.delete(`/posts/${post._id}`);
     },
     onSuccess: () => {
       toast.success(t('success.postDeleted'));

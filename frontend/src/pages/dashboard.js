@@ -20,6 +20,8 @@ import LoadingSpinner from '../components/common/LoadingSpinner';
 import {
   LineChart,
   Line,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -65,9 +67,7 @@ const Dashboard = () => {
   const { data: stats, isLoading } = useQuery({
     queryKey: ['dashboard-stats', user._id, timeRange],
     queryFn: async () => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/users/${user._id}/stats?range=${timeRange}`
-      );
+      const response = await axios.get(`/users/${user._id}/stats?range=${timeRange}`);
       return response.data.data;
     }
   });
@@ -77,9 +77,7 @@ const Dashboard = () => {
     queryKey: ['user-posts', user._id, activeTab],
     queryFn: async () => {
       const params = activeTab === 'drafts' ? '?status=draft' : '';
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/posts/user/${user._id}${params}`
-      );
+      const response = await axios.get(`/posts/user/${user._id}${params}`);
       return response.data;
     }
   });
