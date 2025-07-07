@@ -48,9 +48,7 @@ const Layout = ({ children }) => {
     { path: `/profile/${user._id}`, label: t('nav.profile'), icon: FiUser },
     { path: '/settings', label: t('nav.settings'), icon: FiSettings },
   ] : [
-    { path: '/', label: t('nav.home'), icon: FiHome },
-    { path: '/login', label: t('nav.login'), icon: FiLogIn },
-    { path: '/register', label: t('nav.register'), icon: FiUserPlus },
+    
   ];
 
   return (
