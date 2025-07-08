@@ -24,13 +24,26 @@ const app = express();
 app.use(helmet());
 
 // CORS configuration
-const isProd = process.env.NODE_ENV === 'production';
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://snippit-project.vercel.app'
+];
+
 const corsOptions = {
-  origin: isProd ? true : (process.env.CLIENT_URL || 'http://localhost:3000'),
+  origin: function (origin, callback) {
+    // allow requests with no origin (e.g. mobile apps, curl, postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error(`Origin ${origin} not allowed by CORS`));
+    }
+  },
   methods: ['GET','HEAD','PUT','PATCH','POST','DELETE','OPTIONS'],
   credentials: true,
   optionsSuccessStatus: 204
 };
+
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 

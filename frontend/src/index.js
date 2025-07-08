@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
+// Importing axios and setting the base URL for API requests try
+import axios from 'axios';
+axios.defaults.baseURL = '/api';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>

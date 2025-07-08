@@ -109,6 +109,33 @@ exports.getPost = async (req, res, next) => {
   }
 };
 
+// @desc    Get single post by ID
+// @route   GET /api/posts/id/:id
+// @access  Public
+exports.getPostById = async (req, res, next) => {
+  try {
+    const post = await Post.findById(req.params.id)
+      .populate('author', 'name avatarUrl bio')
+      .populate({
+        path: 'comments',
+        populate: { path: 'author', select: 'name avatarUrl' }
+      });
+
+    if (!post) {
+      return res.status(404).json({ success: false, message: 'Post not found' });
+    }
+
+    // Only allow draft access to author
+    if (post.status === 'draft' && (!req.user || !post.author._id.equals(req.user._id))) {
+      return res.status(404).json({ success: false, message: 'Post not found' });
+    }
+
+    res.status(200).json({ success: true, data: post });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // @desc    Create new post
 // @route   POST /api/posts
 // @access  Private
