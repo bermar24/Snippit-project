@@ -48,6 +48,9 @@ const PostDetail = () => {
     }
   });
 
+  console.dir(post);
+  
+
   // Like mutation
   const likeMutation = useMutation({
     mutationFn: async () => {

@@ -140,8 +140,7 @@ const Profile = () => {
 
   if (profileLoading) return <LoadingSpinner />;
   if (!profile) return <div className="text-center">{t('errors.404Message')}</div>;
-
-  const isFollowing = currentUser && profile.followers.includes(currentUser._id);
+  const isFollowing = currentUser && profile.followers.some(follower => follower._id === currentUser._id);
 
   return (
     <div className="max-w-6xl mx-auto">

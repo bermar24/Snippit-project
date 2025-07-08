@@ -260,6 +260,7 @@ const CommentSection = ({ postId }) => {
     }
     
     if (commentText.trim()) {
+      console.log('Saving comment',postId)
       createCommentMutation.mutate({
         content: commentText,
         post: postId,
