@@ -9,7 +9,8 @@ const {
   deletePost,
   toggleLike,
   uploadFeaturedImage,
-  getPostsByUser
+  getPostsByUser,
+  getPostById
 } = require('../controllers/postController');
 const { protect, optionalAuth, authorize } = require('../middleware/authController');
 const { uploadPostImage } = require('../config/cloudinary');
@@ -29,6 +30,7 @@ const validatePost = [
 // Public routes with optional auth (for like status)
 router.get('/', optionalAuth, getPosts);
 router.get('/user/:userId', optionalAuth, getPostsByUser);
+router.get('/id/:id', optionalAuth, getPostById);
 router.get('/:slug', optionalAuth, getPost);
 
 // Protected routes

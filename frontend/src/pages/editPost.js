@@ -37,7 +37,7 @@ const EditPost = () => {
   const { data: post, isLoading } = useQuery({
     queryKey: ['post-edit', id],
     queryFn: async () => {
-      const response = await axios.get(`/posts/${id}`);
+      const response = await axios.get(`/posts/id/${id}`);
       return response.data.data;
     },
     onSuccess: (data) => {
@@ -59,7 +59,7 @@ const EditPost = () => {
     mutationFn: async (data) => {
       // First update the post
       const response = await axios.put(`/posts/${id}`, data);
-      
+
       // Then upload new image if changed
       if (imageFile && imageChanged) {
         const formData = new FormData();

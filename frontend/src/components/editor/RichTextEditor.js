@@ -196,12 +196,12 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' })
       Placeholder.configure({
         placeholder,
       }),
-      CodeBlockLowlight.configure({
-          createLowlight,
-        HTMLAttributes: {
-          class: 'bg-base-300 rounded-lg p-4 my-4 overflow-x-auto',
-        },
-      }),
+      // CodeBlockLowlight.configure({
+      //     createLowlight,
+      //   HTMLAttributes: {
+      //     class: 'bg-base-300 rounded-lg p-4 my-4 overflow-x-auto',
+      //   },
+      // }),
     ],
     content,
     onUpdate: ({ editor }) => {
