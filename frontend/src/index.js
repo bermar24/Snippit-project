@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Importing axios and setting the base URL for API requests try
 import axios from 'axios';
-axios.defaults.baseURL = '/api';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
