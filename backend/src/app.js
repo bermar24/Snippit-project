@@ -26,8 +26,8 @@ app.use(helmet());
 // CORS configuration
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://snippit-project.vercel.app'
-];
+  process.env.CLIENT_URL
+].filter(Boolean);
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -43,7 +43,6 @@ const corsOptions = {
   credentials: true,
   optionsSuccessStatus: 204
 };
-
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 

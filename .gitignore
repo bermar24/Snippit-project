@@ -6,10 +6,6 @@ backend/node_modules/
 # Environment variables
 *.env
 
-# Example env files
-.env.example
-backend/.env.example
-frontend/.env.example
 
 # Logs
 logs

@@ -54,7 +54,7 @@ const PostCard = ({ post }) => {
             <div className="avatar">
               <div className="w-8 rounded-full">
                 <img 
-                  src={post.author.avatarUrl || `https://ui-avatars.com/api/?name=${post.author.name}`} 
+                  src={post.author.avatarUrl || `https://ui-avatars.com/api/?name=${post.author.name}`}
                   alt={post.author.name}
                 />
               </div>
@@ -231,3 +231,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
