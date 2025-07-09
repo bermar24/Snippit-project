@@ -7,6 +7,7 @@ import axios from 'axios';
 import { format } from 'date-fns';
 import { FiClock, FiEye, FiHeart, FiMessageCircle, FiFilter } from 'react-icons/fi';
 import LoadingSpinner from '../components/common/LoadingSpinner';
+import { useAuth } from '../contexts/AuthContext';
 
 const PostCard = ({ post }) => {
   const { t } = useTranslation();
@@ -91,6 +92,8 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState('');
   const [sortBy, setSortBy] = useState('-publishedAt');
+    const { user } = useAuth();
+  
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['posts', page, category, sortBy],
@@ -130,9 +133,9 @@ const Home = () => {
             <p className="text-xl mb-8">
               Discover amazing stories, share your thoughts, and connect with a community of writers and readers.
             </p>
-            <Link to="/register" className="btn btn-lg btn-accent">
+           { !user && <Link to="/register" className="btn btn-lg btn-accent">
               {t('auth.registerButton')}
-            </Link>
+            </Link>}
           </div>
         </div>
       </motion.div>

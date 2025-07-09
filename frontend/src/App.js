@@ -26,6 +26,10 @@ const Dashboard = React.lazy(() => import('./pages/dashboard'));
 const SearchResults = React.lazy(() => import('./pages/searchResults'));
 const Settings = React.lazy(() => import('./pages/settings'));
 const NotFound = React.lazy(() => import('./pages/notFound'));
+const About = React.lazy(() => import('./pages/about'));
+const Contact = React.lazy(() => import('./pages/contact'));
+const PrivacyPolicy = React.lazy(() => import('./pages/privacy'));
+const TermsAndConditions = React.lazy(() => import('./pages/terms'));
 
 // Create a client
 const queryClient = new QueryClient({
@@ -55,7 +59,11 @@ function App() {
                   <Route path="/posts/:slug" element={<PostDetail />} />
                   <Route path="/profile/:userId" element={<Profile />} />
                   <Route path="/search" element={<SearchResults />} />
-                  
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/privacy" element={<PrivacyPolicy />} />
+                  <Route path="/terms" element={<TermsAndConditions />} />
+
                   {/* Private routes */}
                   <Route element={<PrivateRoute />}>
                     <Route path="/dashboard" element={<Dashboard />} />
@@ -64,7 +72,7 @@ function App() {
                     <Route path="/edit-profile" element={<EditProfile />} />
                     <Route path="/settings" element={<Settings />} />
                   </Route>
-                  
+
                   {/* 404 route */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
@@ -100,3 +108,5 @@ function App() {
 }
 
 export default App;
+
+

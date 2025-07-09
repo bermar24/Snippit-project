@@ -51,6 +51,8 @@ const Layout = ({ children }) => {
     
   ];
 
+  const footerRoutes = ['about','contact','privacy','terms']
+
   return (
     <div className="min-h-screen bg-base-100">
       {/* Navigation */}
@@ -214,7 +216,7 @@ const Layout = ({ children }) => {
       </AnimatePresence>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 min-h-[calc(100vh-260px)]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -233,10 +235,12 @@ const Layout = ({ children }) => {
           </p>
         </div>
         <div className="flex space-x-4">
-          <a href="#" className="link link-hover">{t('footer.about')}</a>
-          <a href="#" className="link link-hover">{t('footer.contact')}</a>
-          <a href="#" className="link link-hover">{t('footer.privacy')}</a>
-          <a href="#" className="link link-hover">{t('footer.terms')}</a>
+          {
+            footerRoutes.map(routeName => <Link key={routeName} to={`/${routeName}`} className="link link-hover">
+                    {t(`footer.${routeName}`)}
+                  </Link>)
+          }
+          
         </div>
       </footer>
     </div>

@@ -48,6 +48,9 @@ const PostDetail = () => {
     }
   });
 
+  console.dir(post);
+  
+
   // Like mutation
   const likeMutation = useMutation({
     mutationFn: async () => {
@@ -141,8 +144,8 @@ const PostDetail = () => {
             <div className="avatar">
               <div className="w-12 rounded-full">
                 <img
-                  src={post.author.avatarUrl || `https://ui-avatars.com/api/?name=${post.author.name}`}
-                  alt={post.author.name}
+                    src={post.author.avatarUrl || `https://ui-avatars.com/api/?name=${post.author.name}`}
+                    alt={post.author.name}
                 />
               </div>
             </div>
@@ -235,8 +238,8 @@ const PostDetail = () => {
               <div className="avatar">
                 <div className="w-16 rounded-full">
                   <img
-                    src={post.author.avatarUrl || `https://ui-avatars.com/api/?name=${post.author.name}`}
-                    alt={post.author.name}
+                      src={post.author.avatarUrl || `https://ui-avatars.com/api/?name=${post.author.name}`}
+                      alt={post.author.name}
                   />
                 </div>
               </div>
@@ -320,3 +323,6 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
+
+
+
