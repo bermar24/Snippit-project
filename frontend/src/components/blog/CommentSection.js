@@ -260,12 +260,10 @@ const CommentSection = ({ postId }) => {
     }
     
     if (commentText.trim()) {
-      console.log('Saving comment',postId)
-      createCommentMutation.mutate({
-        content: commentText,
-        post: postId,
-        parentComment: replyTo
-      });
+      // Build payload without null parentComment to avoid validation errors
+      const payload = { content: commentText, post: postId };
+      if (replyTo) payload.parentComment = replyTo;
+      createCommentMutation.mutate(payload);
     }
   };
 

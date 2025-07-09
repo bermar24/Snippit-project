@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
   },
   avatarUrl: {
     type: String,
-    default: `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/blog-platform/avatars/default.png`
+    default: `https://res.cloudinary.com/dzfgiamjn/image/upload/v1752095092/DefoultProfile_s2avyq.png`
   },
   theme: {
     type: String,

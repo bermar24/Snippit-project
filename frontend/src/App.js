@@ -63,7 +63,7 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/privacy" element={<PrivacyPolicy />} />
                   <Route path="/terms" element={<TermsAndConditions />} />
-                  
+
                   {/* Private routes */}
                   <Route element={<PrivateRoute />}>
                     <Route path="/dashboard" element={<Dashboard />} />
@@ -72,7 +72,7 @@ function App() {
                     <Route path="/edit-profile" element={<EditProfile />} />
                     <Route path="/settings" element={<Settings />} />
                   </Route>
-                  
+
                   {/* 404 route */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
@@ -108,3 +108,5 @@ function App() {
 }
 
 export default App;
+
+
